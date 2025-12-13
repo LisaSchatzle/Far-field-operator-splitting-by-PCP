@@ -41,7 +41,7 @@ The following additional software is necessary to run the code in this project:
 - [ ] *figure_2_2.m* provides plots of the incoherence measure beta as well as of its upper bound depending on t=|c_1-c_2| and for two different fixed values of N_1.
 - [ ] *kurve.m* provides curve values for different shapes of scatterers.
 - [ ] *MyCMap.mat* provides colormap for the plots of expansion coefficients of far field operators.
-- [ ] *RPCP.m* solves the relaxed principal component pursuit problem for far field operator splitting  
+- [ ] *RPCP.m* solves the relaxed principal component pursuit problem for far field operator splitting.
 by using an accelerated proximal gradient method.
 - [ ] *translOp.m* applies translation operator to a matrix.
 
