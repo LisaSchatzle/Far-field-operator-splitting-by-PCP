@@ -33,8 +33,8 @@ The following additional software is necessary to run the code in this project:
 - [ ] *addNoise.m* adds p% complex valued uniformly distributed additive error to a matrix.
 - [ ] *elementwise_soft_thresholding.m* applies elementwise soft thresholding to a complex matrix.
 - [ ] *evaluateFarfieldNystrom.m* evaluates the far field patterns for n2 incident and observation directions on an equidistant grid on the unit sphere for each configuration, i.e. simulates the far field operator, by using a Nyström method.
-- [ ] *example_4_1.m* tests RPCP reconstruction for two scatterers and synthetic data, study on optimal choice of coupling parameter depending on number of incident and observation directions.
-- [ ] *example_4_2.m* tests RPCP reconstruction for two scatterers and synthetic data depending on amount of equally distributed added random noise to the dat.
+- [ ] *example_4_1.m* tests RPCP reconstruction for two scatterers and synthetic data, study on optimal choice of coupling parameter depending on number of illumination and observation directions.
+- [ ] *example_4_2.m* tests RPCP reconstruction for two scatterers and synthetic data depending on amount of equally distributed added random noise to the data.
 - [ ] *example_4_3_1.m* tests RPCP reconstruction for two scatterers and synthetic data depending on distance between scatterer's coponents.
 - [ ] *example_4_3_2.m* tests RPCP reconstruction for two scatterers and synthetic data depending on sizes of scatterer's coponents.
 - [ ] *figure_2_1.m* provides plots of the absolute values of the expansion coefficients of the two components in a sparse plus low-rank far field operator split as well as of the geometry of the corresponding scatterer.
