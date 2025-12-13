@@ -54,7 +54,7 @@ For generating the Figures 2.1 and 2.2 from the work, run
 
 For generating the Figures 4.1--4.5, run
 
-* *example_4_1.m* - **Figure 4.1** (Example 4.1, splitting for varying number of illumination and observation directions and different selection strategies of coupling parameter)
+* *example_4_1.m* - **Figure 4.1** (Example 4.1, splitting for varying number of illumination and observation directions and different selection strategies for coupling parameter)
 * *example_4_2.m* - **Figure 4.2** (Example 4.2, splitting for varying noise level)
 * *example_4_3_1.m* - **Figure 4.3** (Example 4.3, splitting for varying distance between scatterer's components)
 * *example_4_3_2.m* - **Figure 4.4**, **Figure 4.5** (Example 4.3, splitting for varying sizes of scatterer's components)
