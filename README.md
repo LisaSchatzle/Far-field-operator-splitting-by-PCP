@@ -37,7 +37,7 @@ The following additional software is necessary to run the code in this project:
 - [ ] *example_4_2.m* tests RPCP reconstruction for two scatterers and synthetic data depending on amount of equally distributed added random noise to the data.
 - [ ] *example_4_3_1.m* tests RPCP reconstruction for two scatterers and synthetic data depending on distance between scatterer's coponents.
 - [ ] *example_4_3_2.m* tests RPCP reconstruction for two scatterers and synthetic data depending on sizes of scatterer's coponents.
-- [ ] *figure_2_1.m* provides plots of the absolute values of the expansion coefficients of the two components in a sparse plus low-rank far field operator split as well as of the geometry of the corresponding scatterer.
+- [ ] *figure_2_1.m* provides plots of the absolute values of the expansion coefficients of the two components in a sparse plus low-rank far field operator split as well as of the geometry of the corresponding scatterers.
 - [ ] *figure_2_2.m* provides plots of the incoherence measure beta as well as of its upper bound depending on t=|c_1-c_2| and for two different fixed values of N_1.
 - [ ] *kurve.m* provides curve values for different shapes of scatterers.
 - [ ] *MyCMap.mat* provides colormap for the plots of expansion coefficients of far field operators.
