@@ -43,7 +43,7 @@ The following additional software is necessary to run the code in this project:
 - [ ] *MyCMap.mat* provides colormap for the plots of expansion coefficients of far field operators.
 - [ ] *RPCP.m* solves the relaxed principal component pursuit problem for far field operator splitting  
 by using an accelerated proximal gradient method.
-- [ ] *translOp.m* applies generalized translation operator to a far field matrix.
+- [ ] *translOp.m* applies translation operator to a matrix.
 
 ## Generating the files
 
