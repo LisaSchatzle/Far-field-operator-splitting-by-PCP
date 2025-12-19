@@ -18,7 +18,7 @@ by Roland Griesmaier and Lisa Schätzle.
 
 The following versions of the paper are available:
 
-- [ ] 
+- [ ] [CRC Preprint 2025/53, December 2025](https://www.waves.kit.edu/downloads/CRC1173_Preprint_2025-53.pdf)
 
 You find all needed Matlab files to generate the figures and tables.
 
