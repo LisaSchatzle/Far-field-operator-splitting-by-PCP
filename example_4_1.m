@@ -64,7 +64,9 @@ relerrLRC2 = zeros(nr_rep,1);
 
 %% RPCP for standard choice of lambda:
 
-kmax = 200;
+kmax = 400;
+tol = 1e-3;
+
 lambda = 1./(nobs.^(1/2));
 
 for iteri = 1:nr_rep
@@ -74,9 +76,7 @@ for iteri = 1:nr_rep
     sampling.xhat = (0:sampling.nxhat-1)'/sampling.nxhat*2*pi; % detector positions
     sampling.d = (0:sampling.nd-1)/sampling.nd*2*pi; % illumination directions
 
-    mu = nobs(iteri)*3e-4/lambda(iteri);
-
-    tol = 1e-4;
+    mu = nobs(iteri)*3.5e-5/lambda(iteri);
 
     X = {zeros(sampling.nxhat, sampling.nd), zeros(sampling.nxhat, sampling.nd)}; % initial guess
 
@@ -94,8 +94,10 @@ end
 
 %% RPCP with optimally chosen lambda:
 
-kmax = 200;
-lambda = nobs.*[10 8.8 7.4 6.7 6 5.6 5.1 4.8 4.4 4.2 4 3.8]*1e-4;
+kmax = 400;
+tol = 1e-3;
+
+lambda = [11 11 12 12 12 12 12 12 12 12 12 12]*1e-2;
 
 for iteri = 1:nr_rep
 
@@ -104,9 +106,7 @@ for iteri = 1:nr_rep
     sampling.xhat = (0:sampling.nxhat-1)'/sampling.nxhat*2*pi; % detector positions
     sampling.d = (0:sampling.nd-1)/sampling.nd*2*pi; % illumination directions
 
-    mu = nobs(iteri)*3e-4/lambda(iteri);
-
-    tol = 1e-4;
+    mu = nobs(iteri)*3.5e-5/lambda(iteri);
 
     X = {zeros(sampling.nd, sampling.nd), zeros(sampling.nd, sampling.nd)}; % initial guess
 
@@ -134,7 +134,7 @@ semilogy(nobs, relerrkite2, '--*','Color', 'red','LineWidth', 1.5)
 hold on
 semilogy(nobs, relerrLRC2, '--o','Color', 'blue','LineWidth', 1.5)
 hold on 
-semilogy(nobs, nobs/nobs(1)*3e-2, '-','Color', [0.6, 0.6, 0.6],'LineWidth', 1.5)
+semilogy(nobs, nobs/nobs(1)*1e-2, '-','Color', [0.6, 0.6, 0.6],'LineWidth', 1.5)
 
 xlabel('$M$', 'Interpreter', 'latex')
 ylabel('$\varepsilon_{\mathrm{rel}}$', 'Interpreter', 'latex')
@@ -143,18 +143,21 @@ lgd = legend({'$\varepsilon_{\mathrm{rel}}^1,\lambda =M^{-1/2}$' , '$\varepsilon
 lgd.Location = 'southeast';
 
 xlim([nobs(1) nobs(end)])
-ylim([10^(-4) 1])
+ylim([1e-5 1])
+
+set(gca,'YTick',[1e-4 1e-2 1e0]);
+% set(gca,'YTickLabel',{'0.077','0.12'})
 
 grid on
 
 ax = gca;
 ax.FontSize = 30;
 
-print errors_vary_N.eps -depsc
+print errors_vary_M.eps -depsc
 
 %% lambda test for nobs=170:
 
-lambda = (0.07:0.005:0.15);
+lambda = (0.07:0.005:0.18);
 nr_rep = length(lambda);
 
 Akite3 = cell(nr_rep,1);
@@ -165,7 +168,8 @@ relerrLRC3 = zeros(nr_rep,1);
 
 iteri = 3;
 
-kmax = 200;
+kmax = 400;
+tol = 1e-3;
 
 sampling.nxhat = nobs(iteri);  % number of observation directions, i.e. number of rows 
 sampling.nd = nobs(iteri); % number of illumination directions, i.e. number of columns
@@ -174,9 +178,7 @@ sampling.d = (0:sampling.nd-1)/sampling.nd*2*pi; % illumination directions
 
 for iterl = 1:nr_rep
 
-    mu = nobs(iteri)*3e-4/lambda(iteri);
-
-    tol = 1e-4;
+    mu = nobs(iteri)*3.5e-5/lambda(iteri);
 
     X = {zeros(sampling.nd, sampling.nd), zeros(sampling.nd, sampling.nd)};
 
@@ -197,9 +199,9 @@ end
 f = figure();
 f.Position = [100 200 950 450];
 
-plot([0.0767 0.0767], [0 0.25], ':','Color', [0.6, 0.6, 0.6],'LineWidth', 1.5)
+plot([0.0767 0.0767], [0 0.2], ':','Color', [0.6, 0.6, 0.6],'LineWidth', 1.5)
 hold on
-plot([0.125 0.125], [0 0.25], '--','Color', [0.6, 0.6, 0.6],'LineWidth', 1.5)
+plot([0.12 0.12], [0 0.2], '--','Color', [0.6, 0.6, 0.6],'LineWidth', 1.5)
 hold on
 plot(lambda, relerrkite3, '-*','Color', 'red','LineWidth', 1.5)
 hold on
@@ -213,10 +215,10 @@ lgd = legend({'','','$\varepsilon_{\mathrm{rel}}^1$' , '$\varepsilon_{\mathrm{re
 lgd.Location = 'northeast';
 
 xlim([lambda(1) lambda(end)])
-ylim([0 0.25])
+ylim([0 0.2])
 
-set(gca,'XTick',[4.5 7.4]*1e-4);
-set(gca,'XTickLabel',{'0.0767','0.1258'})
+set(gca,'XTick',[0.077 0.120]);
+set(gca,'XTickLabel',{'0.077','0.12'})
 
 grid on
 
