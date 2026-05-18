@@ -78,11 +78,11 @@ for iteri = 1:nr_rep
        % Generate noisy data:
        G = addNoise(Fall, noiselevel(iteri));
 
-       % Reconstruction with RPCP formulation:
-       lambda = 0.125;
-       mu = nobs*(2e-4 + iteri*1e-4)/lambda;
-       kmax = 200;
-       tol = 1e-4;
+       lambda = 0.12;
+       mu = nobs*(2.5e-5 + iteri*1e-5)/lambda;
+
+       kmax = 400;
+       tol = 1e-3;
 
        X = {zeros(sampling.nxhat, sampling.nd), zeros(sampling.nxhat, sampling.nd)}; % initial guess
 

@@ -30,8 +30,6 @@ zkite  = [-28;-30];
 znut = [26;-3];
 z = [zkite, znut];
 
-% s = [-0.6,0.7; -0.6,0.7; -0.6,0.7; -0.6,0.7; -0.6,0.7; -0.6,0.7; -0.6,0.7; -0.6,0.7; -0.6,0.7; -0.6,0.7; -0.6,0.7; -0.6,0.7; -0.6,0.7];
-
 paramskite = [1 .5 [zkite.'+[-1.1,1.1]*.7] 135 3.65]; % parameters defining kite-shaped scatterer
 
 nr_rep = length(Rnut);
@@ -67,14 +65,15 @@ relerrLRC = zeros(nr_rep,1);
 
 %% RPCP reconstruction for varying size of nut-shaped scatterer:
 
-kmax = 200;
-lambda = nobs * [7.5 7.4 7.3 7.2 7.4 7.7 7.7 7.5 7.8 8.2 8.5 8.5 7.9]*1e-4;
-tol = 1e-4;
+kmax = 400;
+lambda = [0.1 0.11 0.12 0.12 0.12 0.12 0.13 0.13 0.13 0.13 0.14 0.14 0.14];
+
+tol = 1e-3;
 X = {zeros(sampling.nxhat, sampling.nd), zeros(sampling.nxhat, sampling.nd)}; % initial guess
 
 for iteri = 1:nr_rep
 
-    mu = nobs * 3e-4/lambda(iteri);
+    mu = nobs * 3.5*1e-5/lambda(iteri);
 
     [A,~,~] = RPCP(Fall{iteri}, X, sampling, k, ones(sampling.nxhat, sampling.nd), zkite, lambda(iteri), mu, kmax, tol);
     
@@ -105,14 +104,14 @@ lgd = legend({'$\varepsilon_{\mathrm{rel}}^1$' , '$\varepsilon_{\mathrm{rel}}^{L
 lgd.Location = 'southeast';
 
 xlim([Rnut(1) Rnut(end)])
-ylim([10^(-3) 1])
+ylim([10^(-4) 1])
 
 grid on
 
 ax = gca;
 ax.FontSize = 30;
 
-print errors_vary_N.eps -depsc
+print errors_vary_size_nut.eps -depsc
 
 %% Geometry of scatterers for varying size of nut-shaped scatterer:
 
@@ -233,14 +232,14 @@ relerrLRC = zeros(nr_rep,1);
 
 %% RPCP reconstruction for varying size of kite-shaped scatterer:
 
-kmax = 200;
-lambda = nobs * [12.9 9.8 8.9 8.1 7.5 6.9 6.8 6.8 6.3 6.2 5.9 6 5.6] * 1e-4;
-tol = 1e-4;
+kmax = 400;
+lambda = [0.17 0.15 0.13 0.13 0.12 0.11 0.1 0.1 0.1 0.1 0.1 0.1 0.1];
+tol = 1e-3;
 X = {zeros(sampling.nxhat, sampling.nd), zeros(sampling.nxhat, sampling.nd)}; % initial guess
 
 for iteri = 1:nr_rep
 
-    mu = nobs * 3e-4/lambda(iteri);
+    mu = nobs * 3.5e-5/lambda(iteri);
 
     [A,~,~] = RPCP(Fall{iteri}, X, sampling, k, ones(sampling.nxhat, sampling.nd), zkite, lambda(iteri), mu, kmax, tol);
     
@@ -270,7 +269,7 @@ lgd = legend({'$\varepsilon_{\mathrm{rel}}^1$' , '$\varepsilon_{\mathrm{rel}}^{L
 lgd.Location = 'southeast';
 
 xlim([Rkite(1) Rkite(end)])
-ylim([10^(-3) 1])
+ylim([10^(-4) 1])
 
 grid on
 

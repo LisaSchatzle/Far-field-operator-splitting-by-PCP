@@ -28,7 +28,7 @@ R = [Rkite, Rnut];
 % Positions of scatterers:
 znut = [26;-3]; % position of nut-shaped scatterer fixed
 v = [-2;-1]/norm([-2;-1]);
-dist = 30:5:80; % distances of kite-shaped scatterer to nut-shaped one
+dist = 15:5:80; % distances of kite-shaped scatterer to nut-shaped one
 
 paramsnut = [1 .5 znut.' 45 4.5]; % parameters defining nut-shaped scatterer
 
@@ -38,7 +38,6 @@ nr_rep = length(dist);
 
 Fkite = cell(1,nr_rep);
 Fall = cell(1,nr_rep);
-
 
 for iteri = 1:nr_rep
     
@@ -51,8 +50,6 @@ for iteri = 1:nr_rep
     
     [Fkite{iteri}, ~, ~] = evaluateFarfieldNystrom({'kite'}, paramskite, q(1), k, nobs, 0);
     [Fall{iteri}, ~, ~] = evaluateFarfieldNystrom({'kite','nut'}, params, q, k, nobs, 0);
-
-    clear params paramskite zkite z
     
     Fkite{iteri} = Fkite{iteri}*2*pi/nobs;
     Fall{iteri} = Fall{iteri}*2*pi/nobs;
@@ -69,14 +66,14 @@ relerrLRC = zeros(nr_rep,1);
 
 %% RPCP reconstruction:
 
-kmax = 200;
-lambda = 0.125;
-tol = 1e-4;
+kmax = 400;
+lambda = 0.12;
+tol = 1e-3;
 X = {zeros(sampling.nxhat, sampling.nd), zeros(sampling.nxhat, sampling.nd)}; % initial guess
 
 for iteri = 1:nr_rep
 
-    mu = nobs*3e-4/lambda;
+    mu = nobs*3.5e-5/lambda;
 
     zkite  = znut+dist(iteri)*v;
 
@@ -106,7 +103,7 @@ xlabel('$|\mathbf{c}_1-\mathbf{c}_2|$', 'Interpreter', 'latex')
 ylabel('$\varepsilon_{\mathrm{rel}}$', 'Interpreter', 'latex')
 
 lgd = legend({'$\varepsilon_{\mathrm{rel}}^1$' , '$\varepsilon_{\mathrm{rel}}^{L}$'},'Interpreter','latex', 'NumColumns', 3);
-lgd.Location = 'southeast';
+lgd.Location = 'northeast';
 
 xlim([dist(1) dist(end)])
 ylim([10^(-3) 1])
@@ -116,7 +113,7 @@ grid on
 ax = gca;
 ax.FontSize = 30;
 
-print errors_vary_N.eps -depsc
+print errors_vary_distance.eps -depsc
 
 %% Plot geometry of scatterers:
 
@@ -147,7 +144,7 @@ for iteri = 1:nr_rep
 
 end
 
-zkite  = znut+dist(7)*v;
+zkite  = znut+dist(10)*v;
 paramskite = [1 .5 [zkite.'+[-0.6,0.7]] 135 3.4];
 
 [x_kite,~,~,~] = kurve(100, 'kite', paramskite);
@@ -175,4 +172,4 @@ ylim([-50 30])
 ax = gca;
 ax.FontSize = 32;
 
-print geometry_vary_N.eps -depsc
+print geometry_vary_distance.eps -depsc
